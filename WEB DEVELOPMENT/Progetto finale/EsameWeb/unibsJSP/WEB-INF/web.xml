@@ -1,0 +1,34 @@
+   <!DOCTYPE web-app PUBLIC 
+      "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN" 
+      "http://java.sun.com/j2ee/dtds/web-app_2_2.dtd">
+   
+   <web-app>
+   
+      <!-- General description of your Web application -->
+      <display-name>                                      
+         Internet World Wide Web How to Program JSP       
+        and Servlet Chapter Examples                     
+      </display-name>                                     
+   
+      <description>                               
+         This is the Web application in which we  
+         demonstrate our JSP and Servlet examples.
+      </description>                              
+   
+      <!-- Servlet definitions -->                            
+      <servlet>                                               
+         <servlet-name>WelcomeServlet2</servlet-name>                
+                                                              
+         <description>                                        
+            A simple servlet that handles an HTTP get request.
+         </description>                                       
+         <servlet-class>WelcomeServlet2</servlet-class>                                     
+      </servlet>                                              
+   
+      <!-- Servlet mappings -->               
+      <servlet-mapping>                       
+         <servlet-name>WelcomeServlet2</servlet-name>
+         <url-pattern>/WelcomeServlet2</url-pattern> 
+      </servlet-mapping>                      
+   
+   </web-app>

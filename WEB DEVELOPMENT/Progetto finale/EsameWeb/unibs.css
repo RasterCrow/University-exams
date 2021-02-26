@@ -1,0 +1,381 @@
+/* pagina css per lo stile di tutte le pagine del sito */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+  margin: 0;
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+  min-width: 1000px; 
+  padding-bottom: 5%; 
+}
+
+#main{
+  margin:1%;
+
+}
+/* stile del banner top */
+#banner{
+  position: sticky;
+  top: 0;
+  left:0;
+  background-color:   #e6b800;
+  width: 100%;
+  height: 100px;
+  min-width: 1000px;
+  z-index:100;
+  outline:1px solid black;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+#frame{
+  padding: 2%;
+}
+#logo{
+  margin-left: 1%;
+}
+#logo:hover{
+  color: red;
+}
+#utils{
+  margin-right: 1%;
+}
+
+/* stile del frame */
+ #topFrame{
+  margin-left: 1%;
+  margin-right: 1%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+ }
+/* stile della pagina dei risultati della ricerca */
+#listaSearched{
+  text-align: center;
+}
+.itemSearched{
+  margin:auto;
+  width: 70%;
+  height: 30%;
+  padding-bottom: 2%;
+  padding-top: 2%;
+}
+.itemSearched:hover{
+  transform: scale(1.2,1.2);
+  color: red;
+}
+
+.itemSearched img{
+  width: 25%;
+  height:auto;
+}
+
+
+/*stile della pagina dell account.php*/
+#infoPanel{
+  position: absolute;
+  outline-style: auto;
+  margin:auto;
+  background-color: #d9d9d9;
+  outline-color: black;
+  padding: 2%;
+  width: 25%;
+  height: 20%;
+  top: 35%;
+  left: 35%;
+  min-width: 300px;
+  min-height: 240px;
+}
+
+#infoPanel input{
+  display: inline-block;
+  margin-top: 5%;
+}
+
+/* stile delle pagina del login*/
+.AlertMessageGood{
+  height: 100px;
+  width: 300px;
+  margin:auto;
+  background-color: green;
+  margin-bottom: 10px;
+}
+.AlertMessageGood p{
+  padding-top: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.AlertMessageBad{
+  height: 100px;
+  width: 300px;
+  margin: auto;
+  background-color: red;
+  margin-bottom: 10px;
+}
+.AlertMessageBad p{
+  padding-top: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+#containerLogin {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  position: sticky;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#signupButtonLogin{
+  margin-top: 25px;
+  margin-left: 2px;
+}
+
+
+/* stile della pagina del signup */
+
+#signupFrame{
+  width: 80%;
+  height: auto;
+  margin:auto;
+}
+#signupFrame li{
+  margin: 5px;
+}
+#signupButton{
+  width: 20%;
+  margin: auto;
+  margin-left: 30%;
+}
+
+/* stile pagina item */
+
+#viewItemImageWrapper{
+
+  width: 500px;
+  height:500px;
+  float: left;
+  text-align: center;
+}
+
+#viewItemImg{
+  margin-top : 5%;
+  width: auto;
+  height:auto;
+  max-width:90%;
+  max-height:90%;
+}
+#viewItemData{
+  clear:both;
+  width: 100%;
+  height: 500px;
+  max-height: 500px;
+  margin:auto;
+}
+
+#viewItemText{
+  padding-left: 2%;
+  width:auto;
+  height:500px;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+ }
+
+ #viewItemTitolo{
+   font-size: 25px;
+   padding-top:1%; 
+ }
+ #viewItemAutore{
+  padding-top:5px; 
+ }
+ .attrLink:hover{
+   color: cyan;
+ }
+ #viewItemPrezzo{
+  font-size: 25px;
+  color: red;
+  padding-top:1%; 
+  padding-bottom : 3%;
+}
+ #viewItemDescrizione{
+  flex-grow: 100; 
+  padding:2%;
+  outline:1px solid grey;
+ }
+
+
+/*stile dati extra dell'item */
+
+#viewItemDataExtra{
+  margin-top: 2%;
+  padding:2%;
+  width: 30%;
+  height: auto;
+  max-height: 600px;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  outline:1px solid grey;
+  float:right;
+  
+}
+
+#viewItemDataExtra *{
+  flex:1;
+}
+
+#listaCanzoni{
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+#listaAttori{
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+#durataCanzone{
+  color: grey;
+}
+#titoloCanzone{
+  float: left;
+}
+#viewItemBuyInfo{
+  padding-top: 2%;
+  float:right;
+}
+#viewItemBuyInfo button {
+  background-color: white; /* Green */
+  border: none;
+  outline: solid black 1px;
+  color:black;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 16px;
+}
+#viewItemBuyInfo button:hover{
+  background-color: #4CAF50
+}
+.fakeButton{
+  color: grey;
+}
+
+/*stile review */
+#viewItemReviews{
+
+  margin-top: 2%;
+  padding: 2%;
+  width:60%;
+  height:600px;
+  outline: solid grey 1px;
+  display: flex;
+  flex-direction: column;
+}
+#orderedReviews{
+  margin-top:1%;
+  overflow: scroll;
+  overflow-x: hidden;
+  
+  width: auto;
+  min-height: 200px;
+  outline: solid black 1px;
+}
+#reviewOrder{
+  width: 100px;
+}
+#titoloRecWrite{
+
+  width:40%;
+  padding: 5px;
+}
+
+#descRecWrite{
+  width:80%;
+  height: 30%;
+  margin-top:5px;
+  padding: 5px;
+}
+
+.reviewLoaded{
+  margin-top: 5px;
+
+  padding-top: 5px;
+  height: auto;
+}
+.reviewLoaded {
+  width: auto;
+  word-wrap: break-word;
+}
+
+.reviewNotFound{
+  margin-left:10px;
+}
+
+/* carrello */
+#cart{
+  
+  height: 50%;
+  width: 80%;
+  left:10%;
+  display: flex;
+  position: sticky;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  outline: solid grey 1px;
+  
+}
+#titleCarrello{
+  height: 50%;
+  width: 100%;
+  display: flex;
+  position: sticky;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#noItemInCart{
+  margin : 2%;
+}
+.cartItemWrapper{
+  display: flex;
+  
+  width:100%;
+  height:auto ;
+  align-items: center;
+  justify-content: center;
+  
+}
+.cartItemTitolo{
+  margin-left: 4%;
+}
+.cartItemTitolo, .cartItemPrezzo, .cartItemRemove{
+  flex :1;
+}
+.cartItemImg{
+  margin : 10%;
+  width: auto;
+  max-height: 100px;
+  max-width: 100px;
+  min-width: 100px;
+  min-width: 100px;  
+}
+#buyCartDiv{
+  display: flex;
+  
+  width:100%;
+  height:auto ;
+  align-items: center;
+  justify-content: center;
+}
+#buyButton{
+  margin-left:10px;
+}
+.cartItemWrapper:hover{
+  background-color: green;
+}

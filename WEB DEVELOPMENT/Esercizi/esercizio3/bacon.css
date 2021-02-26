@@ -1,0 +1,87 @@
+*{
+    font-family: "Trebuchet MS", "Helvetica", sans-serif;
+    font-size: 14px;
+}
+
+h1{
+    color: #808080;
+    font-size: 35px;
+}
+
+h1 b{
+    font-size: 35px;
+}
+
+table{
+    margin: auto;
+    margin-bottom: 60px;
+    margin-top: 20px;
+    border-collapse: collapse;
+    text-align: center;
+}
+th, td {
+    border: 1px solid #aaa;
+    padding: 5px;
+}
+
+th {
+    font-weight: bold;
+}
+
+tr:nth-child(even){
+    background-color: #DCDCDC;
+}
+
+.dataNotFound, b{
+    font-size: 20px;
+}
+
+#main {
+    text-align: center;
+    background-color: white;
+    width: 60%;
+    margin: auto;
+    padding-bottom: 1em;
+    padding-top: 3em;
+    flex-grow: 1;
+}
+
+#main form{
+    margin: auto;
+    width: 24em;
+}
+
+#banner {
+
+    min-width: 350px;
+    min-height: 50px;
+    background-image:url("banner-background.png"); 
+    color: white;
+    height: 5%;
+    padding: 1em;
+}
+
+#w3c {
+    min-width: 350px;
+    min-height: 50px;
+    background-image:url("banner-background.png");
+    color: white;
+    padding: 1em;
+    height: 5%;
+
+}
+html,body, #frame{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+body{
+    background-color: lightgrey;
+}
+#frame{
+    display: flex;
+    flex-flow: column;
+}

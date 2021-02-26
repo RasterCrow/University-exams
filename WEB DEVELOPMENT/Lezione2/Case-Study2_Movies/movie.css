@@ -1,0 +1,118 @@
+
+html{
+    background-image: url("http://courses.cs.washington.edu/courses/cse190m/11sp/homework/2/background.png");
+}
+
+#banner{
+    text-align: center;
+    background-image: url("http://courses.cs.washington.edu/courses/cse190m/11sp/homework/2/bannerbg.png");
+    background-repeat: repeat-x;
+    height: 50px;
+}
+
+h1{
+    font-weight: bold;
+    font-size: 24pt;
+    font-family: Thaoma,Verdana,sans-serif;
+    text-shadow: 3px 3px #999999;
+    text-align: center;
+}
+
+body{
+    font-size: 8pt;
+    font-family: Verdana,Thaoma,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#box{
+    border: 4px solid grey;
+    border-radius: 20px;
+    width: 800px;
+    margin: auto;
+    overflow: hidden;
+}
+
+#rottenbig{
+    background-image: url("http://courses.cs.washington.edu/courses/cse190m/11sp/homework/2/rbg.png");
+    background-repeat: repeat-x;
+    height: 83px;
+}
+
+#label{
+    vertical-align: top;
+    color: red;
+    font-size: 48pt;
+    font-weight: bold;
+}
+
+.paragrph{
+    border: 2px solid grey;
+    border-radius: 10px;
+    background-color: #E8DC9B;
+    padding: 8px;
+    overflow: hidden;
+    font-weight: bold;
+    font-size: 8pt;
+
+}
+
+#list{
+    padding: 0pt 10pt 10pt 10pt;
+    font-size: 8pt;
+    font-family: Arial, sans-serif;
+}
+
+dt{
+    margin-top: 10pt;
+    font-weight: bold;
+}
+
+#footbar{
+    background-color: #A2B964;
+    text-align: center;
+    padding: 5px;
+    clear: both;
+    margin-bottom: 0;
+}
+
+#validator{
+    opacity: 0.5;
+    position: fixed;
+    right: 0%;
+    bottom: 0%;
+}
+
+#turtle{
+    width: 250px;  
+    background-color: #A2B964;
+}
+
+#colon1{
+    float: left;
+    margin: 0% 1% 2% 2%;
+}
+
+.icon1,.icon2{
+    overflow: hidden;
+    padding-right: 5px;
+}
+#rotten{width: 550px;}
+
+#turtle,#colon2{float: right;}
+
+#colon2{margin: 0% 2% 2% 1%;}
+
+#colon1,#colon2{width: 47%;}
+
+#colon1,.icon1,.icon2{float: left;}
+
+.reviewer{margin-bottom: 20pt;}
+
+.cursive{font-style: italic;}
+
+li{list-style: none;}
+
+ul{padding: 0;}
+
+

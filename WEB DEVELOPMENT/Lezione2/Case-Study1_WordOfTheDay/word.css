@@ -1,0 +1,15 @@
+blockquote {
+  font-style: italic;
+}
+
+body {
+  background-color: white;
+  padding: 1em 1em;
+  font-family: Garamond, serif;
+  font-size: 14pt;
+}
+
+.partofspeech {
+  font-family: monospace;
+  font-weight: bold;
+}

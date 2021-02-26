@@ -1,0 +1,44 @@
+/* Codice css della homepage */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+html{
+  margin: 0;
+  height: 100%;
+}
+
+body{
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  margin-left: -200px;
+
+
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+  }
+
+#main{
+  position: relative;
+    width: 90%;
+    margin: auto;
+}
+#top{
+  position : relative;
+  text-align: center;
+
+}
+
+#titolo{
+  position: relative;
+  font-size: x-large;
+}
+
+#titolo:hover{
+  color: #ff4d4d;
+}
+
+#sottoTitolo {
+  position: relative;
+    font-size: small;
+}
+
