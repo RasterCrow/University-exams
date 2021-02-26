@@ -1,0 +1,30 @@
+//SALTA A LABEL SE TOS >=0
+.main
+	BIPUSH 0	//CASO TOS = 0
+	IFGE vero	//Se è vero salta a vero, altrimenti va avanti e stampa F.In questo caso è vero.
+	BIPUSH 0x46 // Stampa F
+    	OUT
+	HALT        
+vero:	BIPUSH 0x56 // stampa V
+    	OUT
+		
+
+	BIPUSH -2	//CASO TOS <0		
+	IFGE vero2	//Se è vero salta a vero2, altrimenti va avanti e stampa F.In questo caso è falso.
+	BIPUSH 0x46 // F
+    OUT
+
+		
+		
+	BIPUSH 6	//CASO TOS >0
+	IFGE vero3	//Se è vero salta a vero3, altrimenti va avanti e stampa F.In questo caso è vero.
+	BIPUSH 0x46 // F
+    OUT  
+	HALT
+vero3:	BIPUSH 0x56 // V
+    	OUT		
+	HALT
+vero2:	BIPUSH 0x46 // F
+    OUT
+	HALT
+.end-main

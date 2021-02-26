@@ -1,0 +1,175 @@
+//Inseriamo il valore esadecimale di un numero che vogliamo stampare in binario.
+//ES: vogliamo stampare 30. Diamo in input 1E ( 30 in hex si scrive 0x1E) e premiamo invio. Il programma ci darà stampato il valore 11110
+//Essendo max cifre 7 il massimo di cifre che possiamo inserire sono appunto 7, per limiti di architettura.
+
+.constant
+
+ OBJREF 0xFFFF
+ ZERO 0x30  // ASCII '0'
+ NOVE 0x39  // ASCII '9'
+ AMAIUSCOLA 0x41 // ASCII 'A'
+ FMAIUSCOLA 0x46 // ASCII 'F'
+ INVIO 0x0A // ASCII INVIO
+
+ maxpos  2147483647
+.end-constant
+
+//Il main è un semplice richiamo delle due funzione che utilizzeremo ovvero leggi_intero_base16 e Stampa_Bin.
+.main
+.var
+n	//n è la variabile in cui inseriremo il nostro valore letto da leggi_intero_base16, giusto per averlo in una variabile.
+.end-var
+	LDC_W OBJREF // prepara parametri da passare al metodo leggi intero base 16
+	BIPUSH 7	//Il maxcifre che vogliamo inserire.
+	INVOKEVIRTUAL leggi_intero_base16	//richiamo il metodo leggi_intero_base16 per leggere l'intero in base 16 che poi stamperemo in decimale.
+	ISTORE n	//Salviamo il valore restituito in una variabile per comdità.
+	LDC_W OBJREF //Prepariamo nuovamente il tutto per il richiamo della funzione Stampa_Bin
+	ILOAD n //Carichiamo il numero che vogliamo stampare
+	INVOKEVIRTUAL Stampa_Bin // richiamo la funzione che stamperà il numero in binario
+	HALT //Non abbiamo altro da fare quindi chiudiamo il programma.
+.end-main
+
+//Questo metodo controlla semplicemente se il numero inserito è 0 oppure no, nel caso lo fosse stampa diretto 0 e torna al main, altrimenti richiama la funzione ricorsiva.
+.method Stampa_Bin(n)
+	ILOAD n	//Carichiamo il numero che abbiamo inserito con leggi_intero_base16
+	BIPUSH 0	//Controlliamo se questo valore sia uguale a 0 o no.
+	IF_ICMPEQ fine	//se lo è saltiamo a fine in quanto non c'è nulla da fare.
+	LDC_W OBJREF	//se non lo è vuol dire che dobbiamo convertirlo in binario e per farlo usiamo la funzione ric StampaBinRic
+	ILOAD n		//Gli diamo in input alla funzione il nostro valore
+	BIPUSH 1	// e inzialmente 1 che poi nei vari richiami ricorsivi cambierà. 
+	INVOKEVIRTUAL StampaBinRic	//Richiamo la funzione Per stampare il binario del numero.
+	IRETURN	//Una volta stampato non ho più niente da fare quindi returno semplicemente.
+fine:BIPUSH 0x30	//stampo 0
+	OUT
+	BIPUSH 0	//e returno 0
+	IRETURN
+.end-method
+
+//StampaBinRic è un metodo ricorsivo che man mano che andrà avanti ci stamperà il valore 1 o 0 dandoci quindi il valore binario del numero equivalente al valore esadecimale inserito in precedenza.
+.method StampaBinRic(n,m)
+.var
+k	
+j	//j è una variabile che ci tornerà utile per salvare un valore più avanti nel codice.
+.end-var
+	ILOAD n	//La prima cosa da fare e controllare se la and tra n e il not di m-1 è uguale a 0, quindi carichiamo n&m
+	ILOAD m	//carichiamo m
+	BIPUSH 1	//Carichiamo 1 che poi andremo a sottrarre a m.
+	ISUB	//Sottraiamo
+	INOT	//Usiamo la funzione da noi creata per fare il not bit a bit del valore di m.
+	IAND	//E infine controlliamo l'and tra i due valore n e ~(m-1)
+	IFEQ vero	//Se è uguale a 0 salta alla label vero, che semplicemenete farà il return di 0.In questa if ci entrerà solo insegutio in quanto è impossibile che ci entri al primo livello della funzione ricorsiva.
+	GOTO falso	//se non è vero vado alla label falso.
+vero:BIPUSH 0	//carica 0
+	GOTO fine2
+falso:		
+	LDC_W OBJREF	//Preparo il richiamo della funzione di StampaBinRic
+	ILOAD n	//n è uno dei valori da passargli, in quanto è il nostro numero esadecimale.
+	ILOAD m	//L'altro numero è m shiftato di 1, quindi lo carichiamo
+	BIPUSH 1	//Scegliamo il valore di quanto shiftarlo.
+	ISHL	//E con l'istruzione creata ISHL lo shiftiamo.
+	INVOKEVIRTUAL StampaBinRic	//In questo modo il richiamo avrà come valori n ed m<<1
+	ISTORE k	//Salviamo il risultato in k
+	ILOAD n	//Ora si va nella parte finale del metodo in quanto bisogna stampare o 0 o 1.Carichiamo n
+	ILOAD m	// e carichiamo m
+	IAND	//Eseugiamo l'and tra i due per vedere se sono uguali
+	IFEQ falso2 //Se il risultato è 0 vuol dire che non lo sono quindi andriamo a falso2 dove stamperemo 0
+	BIPUSH 0x31	//Altrimenti stampiamo 1
+	OUT
+	GOTO fine	//In entrambi casi si va comunque ad incrementare e returnare k
+falso2:BIPUSH 0x30	//Stampo 0
+	OUT
+fine:IINC k 1	//Incremento k di 1
+	ILOAD k		//Lo carico per poi stamparlo.
+fine2:IRETURN
+.end-method
+
+.method leggi_intero_base16(maxcifre)
+.var
+num	//Variabile num in cui metteremo il numero da restituire
+cont //Contatore per vedere quante cifre abbiamo inserito
+endofline //Variabil endofline per vedere se siamo arrivati alla fine delle cifre, quindi se abbiamo premuto invio.
+c //Variabile in cui metteremo le varie cifre inserite ogni volta.
+.end-var
+	BIPUSH 0	//Carichiamo 0 per inizializzare le variabili che dobbiamo utilizzare.
+	DUP
+	DUP
+	ISTORE num	//Inseriamo 0 nel numero
+	ISTORE cont	//Inseriamo 0 nel contatore
+	ISTORE endofline	//Inseriamo 0 nel endofline	
+inizio:	//Qui è l'inizio dell'while
+	ILOAD cont	//Per prima cosa carichiamo il contatore
+	ILOAD maxcifre	// e anche maxcifre
+	IF_ICMPEQ fine	//Controlliamo se sono uguali, nel caso lo fosserro il while non è più valido e quindi si va oltre, ovvero al return.
+	ILOAD endofline	//Nel caso fossero diversi, carichiamo endofline.
+	BIPUSH 1	//Carichiamo il valore 1
+	IF_ICMPEQ fine	//Controlliamo se endofline è uguale a 1. nel caso lo fosse il while non è più valido e quindi andiamo a fine.
+	LDC_W OBJREF	//Nel caso non fosse valido si prosegue nel while e prepariamo dunque il richiamo per il metodo leggicifra-base16.
+	INVOKEVIRTUAL leggicifra-base16	//richiamo il metodo leggicifra-base16
+	ISTORE c	//salviamo il return del metodo nella variabile c che sarebbe la prima cifra.
+	ILOAD c		//Lo riprendiamo
+	IFGE vero	//se la cifra è >=0 proseguiamo nell'if andando a vero
+	BIPUSH 1	// altrimenti vuol dire che abbiamo premuto invio e quindi carichiamo 1 sullo stack
+	ISTORE endofline	//E settiamo la variabile endofline ad 1 in quanto abbiamo finito, cosi non entrerà più nel while.
+	GOTO inizio	//Torniamo all'inizio dell'while che stavolta non proseguirà.
+vero:	// Dentro l'IF carichiamo la variabile con il nostro numero
+	ILOAD num //Carichiamo 4 in cima alla stack e lo useremo per lo shift a sinsitra di 4 ( equivalente a *16)
+	BIPUSH 4	// valore di quanto shiftare il nostro numero.
+	ISHL	//Eseguiamo lo shift con l'apposita istruzione creata
+	ILOAD c	//carichiamo la variabile c sullo stack che sommeremo al valore shiftato.
+	IADD	//Eseguiamo la somma tra c e il valore shiftato di 4
+	ISTORE num	//Salviamo il tutto nuovamente nella variabile num
+	IINC cont 1	//Per finire aumentiamo il contatore di 1 in quanto abbiamo aggiunto 1 delle maxcifre possibili
+	GOTO inizio	//E torniamo all'inizio dell'while
+fine: ILOAD num	//Se siamo arrivati qui è perche non si è entrati nel while e quindi carichiamo la variabile con il nostro numero
+	IRETURN	// e la returniamo al main
+.end-method
+
+////----------------------------
+
+.method leggicifra-base16()
+    BIPUSH 0
+retry:
+    POP
+    IN
+    DUP
+    IFEQ retry
+    DUP
+    LDC_W INVIO // tasto "invio"
+    IF_ICMPEQ TastoInvio
+    DUP 
+    DUP
+    LDC_W ZERO
+    ISUB
+    IFLT retry // caso carattere con codifica < 0x30
+    DUP
+    LDC_W NOVE
+    SWAP
+    ISUB
+    IFLT lettera // caso carattere con codifica > 0x39
+    DUP
+    OUT
+    BIPUSH 0x30
+    ISUB
+finechr:  
+IRETURN
+TastoInvio: 
+       OUT
+       BIPUSH -1
+       GOTO finechr    
+lettera:
+    DUP 
+    DUP
+    LDC_W AMAIUSCOLA
+    ISUB
+    IFLT retry  // caso carattere con codifica < 0x41
+    DUP 
+    LDC_W FMAIUSCOLA
+    SWAP
+    ISUB
+    IFLT retry
+    DUP
+    OUT
+    BIPUSH 0x37
+    ISUB
+    GOTO finechr
+.end-method

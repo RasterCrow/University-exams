@@ -1,0 +1,17 @@
+.Om|65536
+end_constants
+Method main
+end_labels
+0
+10
+bipush
+byte
+bipush
+byte
+ishl
+bipush
+byte
+iadd
+out
+halt
+end_methods

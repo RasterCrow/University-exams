@@ -1,0 +1,10 @@
+//Shifto valore sotto il TOS del valore in TOS.
+.main
+	BIPUSH 1	//numero da shiftare
+	BIPUSH 2	//valore di cui shiftare il numero prima.
+	ISHL		//Shifto di 2 il valore 1 è il risultato sarebbe 100, quindi 4
+	BIPUSH 0x30	//Per il test gli sommo 0x30
+	IADD
+	OUT			//Stampo e il risultato è effettivamente 4.
+	HALT
+.end-main

@@ -1,0 +1,8 @@
+//CALCOLA NOT BIT A BIT DI TOS
+.main
+	BIPUSH 2	//Inserisco il valore 2
+	INOT		//L'INOT calcola il not bit a bit dell'elemento, è il risultato è 0xfd che è giusto.
+	BIPUSH 0xfd	//Il test contrario è uguale, gli diamo 0xfd
+	INOT		//L'INOT inserisce in memoria 2.
+	HALT		//Stop del programma
+.end-main
